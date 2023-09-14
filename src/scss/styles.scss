@@ -1,0 +1,64 @@
+@import "bootstrap/scss/bootstrap";
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  font-size: 24px;
+}
+
+body {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.board {
+  display: grid;
+}
+
+.board.not-attackable {
+  cursor: not-allowed;
+}
+
+.board.attackable {
+  cursor: crosshair;
+}
+
+.board:not(.hidden) > .board-cell.placed {
+  background-color: #26577C;
+}
+
+.board.attackable > .board-cell[data-cell-status="missed"],
+.board.attackable > .board-cell[data-cell-status="hit"] {
+  cursor: not-allowed;
+}
+
+.board.attackable > .board-cell:not([data-cell-status="missed"]):not([data-cell-status="hit"]):hover {
+  background-color: #22668D;
+  // transition: transform .4s ease 0s;
+  // transform: scale(1.2);
+  animation: flash-anim 2s ease 0s infinite normal forwards;
+}
+
+@keyframes flash-anim {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.board-cell {
+  aspect-ratio: 1/1;
+}
+
+.board-cell.place-prev-yes {
+  background-color: #35A29F;
+}
+
+.board-cell.place-prev-no {
+  background-color: #AE445A !important;
+}
